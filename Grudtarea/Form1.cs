@@ -49,15 +49,34 @@ namespace Wfdb
             // Llenar el ComboBox con las razas
             comboBoxraza.Items.AddRange(razasDragonBall);
         }
+        private void insertar_Click(object sender, EventArgs e)
+        {
+            string nombre = textBoxNombre.Text;
+            string raza = textBoxRaza.Text;
+            int nivelPoder = (int)numericUpDownNivelPoder.Value;
+            DateTime fechaCreacion = dateTimePickerfechacreacion.Value;
+            string historia = textBoxhistoria.Text;
 
+            int respuesta = personaje.CrearPersonaje(nombre, raza, nivelPoder, fechaCreacion, historia);
+            if (respuesta > 0)
+            {
+                MessageBox.Show("Personaje creado correctamente");
+                dataGridViewPersonajes.DataSource = personaje.LeerPersonajes();
+            }
+            else
+            {
+                MessageBox.Show("Error al crear el personaje");
+            }
+        }
         private void buttonInsertar_Click(object sender, EventArgs e)
         {
             string nombre = textBoxNombre.Text;
-            //string raza = comboBoxRaza.Text;
             string raza = textBoxRaza.Text;
             int nivelPoder = (int)numericUpDownNivelPoder.Value;
+            DateTime fechaCreacion = dateTimePickerfechacreacion.Value;
+            string historia = textBoxhistoria.Text;
 
-            int respuesta = personaje.CrearPersonaje(nombre, raza, nivelPoder);
+            int respuesta = personaje.CrearPersonaje(nombre, raza, nivelPoder, fechaCreacion, historia);
             if (respuesta > 0)
             {
                 MessageBox.Show("Personaje creado correctamente");
@@ -82,10 +101,15 @@ namespace Wfdb
                 string nombre = personajeEncontrado.Rows[0]["nombre"].ToString();
                 string raza = personajeEncontrado.Rows[0]["raza"].ToString();
                 int nivelPoder = int.Parse(personajeEncontrado.Rows[0]["nivel_poder"].ToString());
+                DateTime fechaCreacion = DateTime.Parse(personajeEncontrado.Rows[0]["fecha_creacion"].ToString());
+                string historia = personajeEncontrado.Rows[0]["historia"].ToString();
+
                 textBoxNombre.Text = nombre;
                 textBoxRaza.Text = raza;
                 comboBoxraza.Text = raza;
                 numericUpDownNivelPoder.Value = nivelPoder;
+                dateTimePickerfechacreacion.Value = fechaCreacion;
+                textBoxhistoria.Text = historia;
             }
             else
             {
@@ -152,6 +176,100 @@ namespace Wfdb
             {
                 buscarPorId();
             }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
+        private void buttonEliminar_Click(object sender, EventArgs e)
+        {
+            // Verificar si el campo textBoxid no está vacío
+            if (string.IsNullOrEmpty(textBoxid.Text))
+            {
+                MessageBox.Show("Por favor, ingresa un ID válido.");
+                return;
+            }
+
+            // Intentar convertir el texto del campo textBoxid a un entero
+            if (int.TryParse(textBoxid.Text, out int id))
+            {
+                // Llamar al método para eliminar el personaje
+                personaje.EliminarPersonaje(id);
+                MessageBox.Show("Personaje eliminado con éxito.");
+                // Actualizar la lista de personajes en el DataGridView
+                dataGridViewPersonajes.DataSource = personaje.LeerPersonajes();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, ingresa un ID válido.");
+            }
+        }
+        private void buttonActualizar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxid.Text))
+            {
+                MessageBox.Show("Por favor, ingresa un ID válido.");
+                return;
+            }
+
+            if (int.TryParse(textBoxid.Text, out int id))
+            {
+                string nombre = textBoxNombre.Text;
+                string raza = textBoxRaza.Text;
+                int nivelPoder = (int)numericUpDownNivelPoder.Value;
+                DateTime fechaCreacion = dateTimePickerfechacreacion.Value;
+                string historia = textBoxhistoria.Text;
+
+                personaje.ActualizarPersonaje(id, nombre, raza, nivelPoder, fechaCreacion, historia);
+                MessageBox.Show("Personaje actualizado con éxito.");
+                dataGridViewPersonajes.DataSource = personaje.LeerPersonajes();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, ingresa un ID válido.");
+            }
+        }
+
+        private void buttonCargar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxid.Text))
+            {
+                MessageBox.Show("Por favor, ingresa un ID válido.");
+                return;
+            }
+
+            if (int.TryParse(textBoxid.Text, out int id))
+            {
+                string nombre = textBoxNombre.Text;
+                string raza = textBoxRaza.Text;
+                int nivelPoder = (int)numericUpDownNivelPoder.Value;
+                DateTime fechaCreacion = dateTimePickerfechacreacion.Value;
+                string historia = textBoxhistoria.Text;
+
+                personaje.ActualizarPersonaje(id, nombre, raza, nivelPoder, fechaCreacion, historia);
+                MessageBox.Show("Personaje actualizado con éxito.");
+                dataGridViewPersonajes.DataSource = personaje.LeerPersonajes();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, ingresa un ID válido.");
+            }
+
         }
     }
 }

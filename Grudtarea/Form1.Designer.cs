@@ -42,6 +42,12 @@
             this.buttonCargaData = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDownNivelPoder = new System.Windows.Forms.NumericUpDown();
+            this.textBoxhistoria = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dateTimePickerfechacreacion = new System.Windows.Forms.DateTimePicker();
+            this.buttonEliminar = new System.Windows.Forms.Button();
+            this.buttonCargar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPersonajes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNivelPoder)).BeginInit();
             this.SuspendLayout();
@@ -174,11 +180,72 @@
             this.numericUpDownNivelPoder.Size = new System.Drawing.Size(309, 22);
             this.numericUpDownNivelPoder.TabIndex = 14;
             // 
+            // textBoxhistoria
+            // 
+            this.textBoxhistoria.Location = new System.Drawing.Point(901, 136);
+            this.textBoxhistoria.Name = "textBoxhistoria";
+            this.textBoxhistoria.Size = new System.Drawing.Size(304, 22);
+            this.textBoxhistoria.TabIndex = 18;
+            this.textBoxhistoria.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(803, 139);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 16);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Historia";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(803, 86);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(119, 16);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Fecha de creación";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // dateTimePickerfechacreacion
+            // 
+            this.dateTimePickerfechacreacion.Location = new System.Drawing.Point(947, 82);
+            this.dateTimePickerfechacreacion.Name = "dateTimePickerfechacreacion";
+            this.dateTimePickerfechacreacion.Size = new System.Drawing.Size(268, 22);
+            this.dateTimePickerfechacreacion.TabIndex = 19;
+            // 
+            // buttonEliminar
+            // 
+            this.buttonEliminar.Location = new System.Drawing.Point(694, 240);
+            this.buttonEliminar.Name = "buttonEliminar";
+            this.buttonEliminar.Size = new System.Drawing.Size(180, 38);
+            this.buttonEliminar.TabIndex = 20;
+            this.buttonEliminar.Text = "Eliminar";
+            this.buttonEliminar.UseVisualStyleBackColor = true;
+            this.buttonEliminar.Click += new System.EventHandler(this.buttonEliminar_Click);
+            // 
+            // buttonCargar
+            // 
+            this.buttonCargar.Location = new System.Drawing.Point(966, 239);
+            this.buttonCargar.Name = "buttonCargar";
+            this.buttonCargar.Size = new System.Drawing.Size(180, 41);
+            this.buttonCargar.TabIndex = 21;
+            this.buttonCargar.Text = "Actualizar";
+            this.buttonCargar.UseVisualStyleBackColor = true;
+            this.buttonCargar.Click += new System.EventHandler(this.buttonCargar_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1288, 540);
+            this.Controls.Add(this.buttonCargar);
+            this.Controls.Add(this.buttonEliminar);
+            this.Controls.Add(this.dateTimePickerfechacreacion);
+            this.Controls.Add(this.textBoxhistoria);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.numericUpDownNivelPoder);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.buttonCargaData);
@@ -219,6 +286,12 @@
         private System.Windows.Forms.Button buttonCargaData;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDownNivelPoder;
+        private System.Windows.Forms.TextBox textBoxhistoria;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DateTimePicker dateTimePickerfechacreacion;
+        private System.Windows.Forms.Button buttonEliminar;
+        private System.Windows.Forms.Button buttonCargar;
     }
 }
 

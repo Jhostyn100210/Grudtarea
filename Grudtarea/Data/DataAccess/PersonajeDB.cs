@@ -2,9 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+
 
 namespace Grudtarea.Data
 {
@@ -12,6 +15,9 @@ namespace Grudtarea.Data
     {
         // Información de conexión a la base de datos
         private string connectionString = "Server=localhost;Database=personajedb;Uid=root;Pwd=Jhostyn_2;";
+
+        public string ConnectionString { get; internal set; }
+
         //constructor
         public PersonajeDB(string servidor, string usur, string pwd)
         {
@@ -124,17 +130,28 @@ namespace Grudtarea.Data
         // Método para eliminar un personaje
         public void EliminarPersonaje(int id)
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            try
             {
-                connection.Open();
-
-                string sql = "DELETE FROM personajes_dragon_ball WHERE id = @id";
-                using (MySqlCommand command = new MySqlCommand(sql, connection))
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    command.Parameters.AddWithValue("@id", id);
+                    connection.Open();
 
-                    command.ExecuteNonQuery();
+                    string sql = "DELETE FROM personajes_dragon_ball WHERE id = @id";
+                    using (MySqlCommand command = new MySqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected == 0)
+                        {
+                            MessageBox.Show("No se encontró ningún personaje con el ID proporcionado.");
+                        }
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al intentar eliminar el personaje: " + ex.Message);
             }
         }
 
@@ -164,5 +181,7 @@ namespace Grudtarea.Data
         {
             throw new NotImplementedException();
         }
+
+
     }
 }
